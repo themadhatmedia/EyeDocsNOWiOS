@@ -67,7 +67,6 @@ class EditProfileCompanyInfoViewController: UITableViewController,UIImagePickerC
     var web:String?
     var intro:String?
     var profileImage:String?
- 
     private lazy var uploadingProgressBar: JGProgressHUD = {
         let progressBar = JGProgressHUD(style: .dark)
         progressBar.indicatorView = JGProgressHUDRingIndicatorView()
@@ -79,7 +78,7 @@ class EditProfileCompanyInfoViewController: UITableViewController,UIImagePickerC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         iconDropDown.image = iconDropDown.image?.withRenderingMode(.alwaysTemplate)
         iconDropDown.tintColor = UIColor(hex: appColorNew!)
         nokri_dropDownSetup()
@@ -109,6 +108,7 @@ class EditProfileCompanyInfoViewController: UITableViewController,UIImagePickerC
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         nokri_textFieldUpdateBottomBorderSize()
+
     }
     
     func nokri_roundedImage(){

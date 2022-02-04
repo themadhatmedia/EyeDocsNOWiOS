@@ -298,7 +298,7 @@ class DashboarCompanyViewController: UIViewController,UITableViewDataSource,UITa
     //MARK:- TableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -377,7 +377,7 @@ class DashboarCompanyViewController: UIViewController,UITableViewDataSource,UITa
             return cell
             
         }
-        else if indexPath.section == 2{
+        else {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardAboutCompanyTableViewCell", for: indexPath) as! DashboardAboutCompanyTableViewCell
           
@@ -437,120 +437,120 @@ class DashboarCompanyViewController: UIViewController,UITableViewDataSource,UITa
             }
         return cell
         }
-        else if indexPath.section == 3{
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DasboardSkillsTableViewCell", for: indexPath) as! DasboardSkillsTableViewCell
-            if dataArraySkills.isEmpty == true{
-                cell.lblSkill.text = skillText
-                isSkil = 1
-            }else{
-                var skill = [String]()
-                for obj in dataArraySkills{
-                    skill.append(obj.value)
-                    //cell.lblSkill.text = obj.value
-                }
-                print(skill)
-
-                cell.lblSkill.text = skill.joined(separator: ",")
-                
-                let htmlString = skill.joined(separator: ",")
-                // works even without <html><body> </body></html> tags, BTW
-                let data = htmlString.data(using: String.Encoding.unicode)! // mind "!"
-                let attrStr = try? NSAttributedString( // do catch
-                    data: data,
-                    options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
-                    documentAttributes: nil)
-                cell.lblSkill.attributedText = attrStr
-                
-                
-                
-                self.skillCellHeight = (cell.lblSkill.attributedText?.height(withConstrainedWidth: self.view.frame.size.width))!+16;
-                
-            }
-            return cell
-            
-        }
-        
-        else if indexPath.section == 4{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CompanyPortfolioImgTableViewCell", for: indexPath) as! CompanyPortfolioImgTableViewCell
-            
-            if dataArrImage.count == 0{
-                cell.lblNot.isHidden = false
-            }else{
-                cell.datImgArr = dataArrImage
-                cell.collectionView.reloadData()
-                 cell.lblNot.isHidden = true
-            }
-            
-            return cell
-            
-        }
-        
-        else if indexPath.section == 5{
-        
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MyProfileVideoTableViewCell", for: indexPath) as! MyProfileVideoTableViewCell
-            
-            if videoUrl == ""{
-                cell.youTubePlayer.isHidden = true
-                cell.lblNot.isHidden = false
-                //cell.lblNotVideo.text = notVideo
-            }else{
-                 cell.lblNot.isHidden = true
-                cell.youTubePlayer.isHidden = false
-                 cell.youTubePlayer.load(withVideoId: videoUrl)
-            }
-            
-            return cell
-        }
-        else
-        {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardLocationAndMapTableViewCell", for: indexPath) as! DashboardLocationAndMapTableViewCell
-            var markerDict: [Int: GMSMarker] = [:]
-            let zoom: Float = 20
-            
-            //MARKL:- Map
-            struct Place {
-                let id: Int
-                let name: String
-                let lat: CLLocationDegrees
-                let lng: CLLocationDegrees
-                let icon: String
-            }
-            
-            if latCheck == true{
-                latitude = ""
-                longitude = ""
-            }
-            let camera = GMSCameraPosition.camera(withLatitude: (latitude! as NSString).doubleValue, longitude: (longitude! as NSString).doubleValue, zoom: zoom)
-            cell.mapView.camera = camera
-            
-            do {
-                if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-                    cell.mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-                } else {
-                    NSLog("Unable to find style.json")
-                }
-            } catch {
-                NSLog("One or more of the map styles failed to load. \(error)")
-            }
-            
-            let places = [
-                Place(id: 0, name: "", lat: (latitude! as NSString).doubleValue, lng: (longitude! as NSString).doubleValue, icon: ""),
-                ]
-            
-            for place in places {
-                let marker = GMSMarker()
-                marker.position = CLLocationCoordinate2D(latitude: place.lat, longitude: place.lng)
-                marker.title = place.name
-                marker.snippet = "\(place.name)"
-                marker.map = cell.mapView
-                markerDict[place.id] = marker
-            }
-            
-             //cell.btnDeleteAccount.addTarget(self, action: #selector(DashboarCompanyViewController.nokri_btnDeleteAccClicked(_:)), for: .touchUpInside)
-            //cell.btnDeleteAccount.setTitle(deleteAccountText, for: .normal)
-            return cell
-        }
+//        else if indexPath.section == 3{
+//
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "DasboardSkillsTableViewCell", for: indexPath) as! DasboardSkillsTableViewCell
+//            if dataArraySkills.isEmpty == true{
+//                cell.lblSkill.text = skillText
+//                isSkil = 1
+//            }else{
+//                var skill = [String]()
+//                for obj in dataArraySkills{
+//                    skill.append(obj.value)
+//                    //cell.lblSkill.text = obj.value
+//                }
+//                print(skill)
+//
+//                cell.lblSkill.text = skill.joined(separator: ",")
+//
+//                let htmlString = skill.joined(separator: ",")
+//                // works even without <html><body> </body></html> tags, BTW
+//                let data = htmlString.data(using: String.Encoding.unicode)! // mind "!"
+//                let attrStr = try? NSAttributedString( // do catch
+//                    data: data,
+//                    options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
+//                    documentAttributes: nil)
+//                cell.lblSkill.attributedText = attrStr
+//
+//
+//
+//                self.skillCellHeight = (cell.lblSkill.attributedText?.height(withConstrainedWidth: self.view.frame.size.width))!+16;
+//
+//            }
+//            return cell
+//
+//        }
+//
+//        else if indexPath.section == 4{
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "CompanyPortfolioImgTableViewCell", for: indexPath) as! CompanyPortfolioImgTableViewCell
+//
+//            if dataArrImage.count == 0{
+//                cell.lblNot.isHidden = false
+//            }else{
+//                cell.datImgArr = dataArrImage
+//                cell.collectionView.reloadData()
+//                 cell.lblNot.isHidden = true
+//            }
+//
+//            return cell
+//
+//        }
+//
+//        else if indexPath.section == 5{
+//
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "MyProfileVideoTableViewCell", for: indexPath) as! MyProfileVideoTableViewCell
+//
+//            if videoUrl == ""{
+//                cell.youTubePlayer.isHidden = true
+//                cell.lblNot.isHidden = false
+//                //cell.lblNotVideo.text = notVideo
+//            }else{
+//                 cell.lblNot.isHidden = true
+//                cell.youTubePlayer.isHidden = false
+//                 cell.youTubePlayer.load(withVideoId: videoUrl)
+//            }
+//
+//            return cell
+//        }
+//        else
+//        {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardLocationAndMapTableViewCell", for: indexPath) as! DashboardLocationAndMapTableViewCell
+//            var markerDict: [Int: GMSMarker] = [:]
+//            let zoom: Float = 20
+//
+//            //MARKL:- Map
+//            struct Place {
+//                let id: Int
+//                let name: String
+//                let lat: CLLocationDegrees
+//                let lng: CLLocationDegrees
+//                let icon: String
+//            }
+//
+//            if latCheck == true{
+//                latitude = ""
+//                longitude = ""
+//            }
+//            let camera = GMSCameraPosition.camera(withLatitude: (latitude! as NSString).doubleValue, longitude: (longitude! as NSString).doubleValue, zoom: zoom)
+//            cell.mapView.camera = camera
+//
+//            do {
+//                if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+//                    cell.mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+//                } else {
+//                    NSLog("Unable to find style.json")
+//                }
+//            } catch {
+//                NSLog("One or more of the map styles failed to load. \(error)")
+//            }
+//
+//            let places = [
+//                Place(id: 0, name: "", lat: (latitude! as NSString).doubleValue, lng: (longitude! as NSString).doubleValue, icon: ""),
+//                ]
+//
+//            for place in places {
+//                let marker = GMSMarker()
+//                marker.position = CLLocationCoordinate2D(latitude: place.lat, longitude: place.lng)
+//                marker.title = place.name
+//                marker.snippet = "\(place.name)"
+//                marker.map = cell.mapView
+//                markerDict[place.id] = marker
+//            }
+//
+//             //cell.btnDeleteAccount.addTarget(self, action: #selector(DashboarCompanyViewController.nokri_btnDeleteAccClicked(_:)), for: .touchUpInside)
+//            //cell.btnDeleteAccount.setTitle(deleteAccountText, for: .normal)
+//            return cell
+//        }
     }
     
  
@@ -563,18 +563,18 @@ class DashboarCompanyViewController: UIViewController,UITableViewDataSource,UITa
         }else if indexPath.section == 2{
             return self.aboutCellHeight + 50
             
-        }else if indexPath.section == 3 {
-            return skillCellHeight + 45
-        }else if indexPath.section == 4{
-            return 250
-        }else if indexPath.section == 5{
-            return 250
-        } else if indexPath.section == 6{
-            if mapHide == true{
-                return 0
-            }else{
-                return 230
-            }
+//        }else if indexPath.section == 3 {
+//            return skillCellHeight + 45
+//        }else if indexPath.section == 4{
+//            return 250
+//        }else if indexPath.section == 5{
+//            return 250
+//        } else if indexPath.section == 6{
+//            if mapHide == true{
+//                return 0
+//            }else{
+//                return 230
+//            }
         }
         else{
             return 230
@@ -588,32 +588,32 @@ class DashboarCompanyViewController: UIViewController,UITableViewDataSource,UITa
             return ""
         }else if section == 1 {
             return  titleDasboard
-        }else if section == 2{
+        }else {
             return titleAboutCompany
             
-        }else if section == 3{
-            return titleSkill
-        }else if section == 4{
-            return titlePortfolio
+//        }else if section == 3{
+//            return titleSkill
+//        }else if section == 4{
+//            return titlePortfolio
+//        }
+//        else if section == 5{
+//             return titleEmployerVid
+//        }else{
+//
+//            return titleLocation
+//        }
         }
-        else if section == 5{
-             return titleEmployerVid
-        }else{
-            
-            return titleLocation
-        }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
             return 0
-        }else if section == 6 {
-            if mapHide == true{
-                return 0
-            }else{
-                return 40
-            }
+//        }else if section == 6 {
+//            if mapHide == true{
+//                return 0
+//            }else{
+//                return 40
+//            }
         } else{
             return 40
         }

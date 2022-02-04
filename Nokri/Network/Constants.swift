@@ -15,9 +15,8 @@ class Constants {
     struct  URL {
         
         
-        
-        
-        static let ipAddress = "https://www.yourdomainname.com/"
+
+        static let ipAddress = "https://eyedocsnow.com/"
         
         static let baseUrl =  ipAddress + "wp-json/nokri/v1/"
         
@@ -155,8 +154,8 @@ class Constants {
     
     
     struct customCodes {
-        static let purchaseCode = "purchaseCode"
-        static let securityCode = "securityCode"
+        static let purchaseCode = "cb73ec18-9c61-4fd0-8246-72207eddf38d"
+        static let securityCode = "cb73ec18-9c61-4fd0-8246-72207eddf38d"
         static let contentType = "application/json"
         static let requestFrom = "ios"
     }

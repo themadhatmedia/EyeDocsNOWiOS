@@ -20,6 +20,8 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
     
     //MARK:- IBOutlets
     
+    @IBOutlet weak var healineView1: UIView!
+    @IBOutlet weak var headlineView: UIView!
     @IBOutlet weak var imageViewBasicInfo: UIImageView!
     @IBOutlet weak var lblCompanyName: UILabel!
     @IBOutlet weak var txtName: UITextField!
@@ -87,7 +89,11 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
         nokri_customeButton()
         //nokri_textFieldAddBorder()
         nokri_roundedImage()
-        
+        self.txtHeadline.isHidden = true
+        self.lblHeadline.isHidden = true
+        self.headlineView.isHidden = false
+        self.healineView1.isHidden = true
+
     }
     
     func nokri_roundedImage(){

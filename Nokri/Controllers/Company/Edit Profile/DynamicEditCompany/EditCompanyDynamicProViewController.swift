@@ -16,7 +16,7 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
     //MARK:- IbOutlets
     
     @IBOutlet weak var tableView: UITableView!
-    
+  
     //MARK:- Proprties
     
     var saveInfoText = ""
@@ -51,6 +51,7 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
 
         nokri_basicInfoData()
         self.tabBarController?.tabBar.barTintColor =  UIColor(hex: appColorNew!)
+        
     }
     
     //MARK:- TableView
