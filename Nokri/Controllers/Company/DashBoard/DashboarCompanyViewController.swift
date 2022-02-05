@@ -262,7 +262,7 @@ class DashboarCompanyViewController: UIViewController,UITableViewDataSource,UITa
                 sampleArray.append(dataArray.count)
             }
             
-            if ab.fieldTypeName == "your_dashbord"{
+            if ab.fieldTypeName == "your_dashbo0rd"{
                 self.titleDasboard = ab.key
             }
             if ab.fieldTypeName == "about_me"{

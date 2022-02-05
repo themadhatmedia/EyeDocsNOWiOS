@@ -212,7 +212,7 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
         let objData = fieldsArray[indexPath.row]
         
         if indexPath.section == 0{
-            return 880
+            return 792
         }else if indexPath.section == 1{
             
             if objData.fieldType == "textfield"{

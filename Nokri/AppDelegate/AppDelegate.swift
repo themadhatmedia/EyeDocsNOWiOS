@@ -23,6 +23,7 @@ import FirebaseInstanceID
  import RAMAnimatedTabBarController
 
 //import Stripe
+//com.bundleIdentifier.app
 
 @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,MessagingDelegate {
