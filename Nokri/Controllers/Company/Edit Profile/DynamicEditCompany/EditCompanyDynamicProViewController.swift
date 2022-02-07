@@ -72,8 +72,7 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let objData = fieldsArray[indexPath.row]
-        
+
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "EditCompanyDynamicStaticTableViewCell", for: indexPath) as! EditCompanyDynamicStaticTableViewCell
             
@@ -98,6 +97,9 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
             return cell
         }
         else if indexPath.section == 1{
+
+            let objData = fieldsArray[indexPath.row]
+
             if objData.fieldType == "textfield"{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "UpdateInfoTextfieldTableViewCell", for: indexPath) as! UpdateInfoTextfieldTableViewCell
                 
@@ -209,12 +211,14 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let objData = fieldsArray[indexPath.row]
+
         
         if indexPath.section == 0{
             return 792
         }else if indexPath.section == 1{
-            
+
+            let objData = fieldsArray[indexPath.row]
+
             if objData.fieldType == "textfield"{
                 return 88
             }else if objData.fieldType == "select"{
@@ -304,10 +308,10 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
             "emp_name": nameIs,
             "emp_phone": phoneIs,
             "emp_headline": professionIs,
-            "emp_intro": dobIs ,
-            "emp_web": webIs ,
+          //  "emp_map_location": professionIs,
+            "emp_intro": dobIs,
+            "emp_web": webIs,
             "emp_prof_stat" : st,
-            
         ]
         print(param)
         

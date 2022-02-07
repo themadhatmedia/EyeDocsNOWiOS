@@ -256,7 +256,7 @@ class DashboarCompanyViewController: UIViewController,UITableViewDataSource,UITa
         }
         for ab in dataArray{
 
-            if ab.value != "" && ab.value != nil{
+            if ab.value != "" && ab.value != nil && ab.key != "Headline" && ab.key != "Longitude" && ab.key != "Latitude" {
                 keyArr.append(ab.key)
                 valArr.append(ab.value)
                 sampleArray.append(dataArray.count)

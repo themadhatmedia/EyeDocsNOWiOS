@@ -3555,7 +3555,7 @@ class JobPostViewController: UIViewController,GMSMapViewDelegate,GMSAutocomplete
 //                            hud.show(in: self.view)
 //                            hud.dismiss(afterDelay: 2.0)
                             //self.view.makeToast(messageResponse, duration: 1.5, position: .center)
-                            self.perform(#selector(self.nokri_showBuyPackages), with: nil, afterDelay: 2)
+                            //self.perform(#selector(self.nokri_showBuyPackages), with: nil, afterDelay: 2)
                         }
                         self.nokri_map(lat: lati, long: longi)
                         self.stopAnimating()
@@ -3563,12 +3563,11 @@ class JobPostViewController: UIViewController,GMSMapViewDelegate,GMSAutocomplete
                 
             }
             
-            
         }
         
         @objc func nokri_showBuyPackages(){
-//            let buyPkgController = self.storyboard?.instantiateViewController(withIdentifier: "PackagesViewController") as! PackagesViewController
-//            self.navigationController?.pushViewController(buyPkgController, animated: true)
+            let buyPkgController = self.storyboard?.instantiateViewController(withIdentifier: "PackagesViewController") as! PackagesViewController
+            self.navigationController?.pushViewController(buyPkgController, animated: true)
         }
         
         func nokri_qualificationDataParser(qualificationArr:NSArray){

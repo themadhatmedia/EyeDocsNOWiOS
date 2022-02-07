@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>789184658531-aao7lsda1dbt5nk3tk7jev340j6jhc8j.apps.googleusercontent.com</string>
+	<string>1030227550407-bq3q1qfmrm8vg89qukmlqtb03hdu57jh.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.789184658531-aao7lsda1dbt5nk3tk7jev340j6jhc8j</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>789184658531-127brse5uivubndbcb2d1ffk7bm08jd0.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.1030227550407-bq3q1qfmrm8vg89qukmlqtb03hdu57jh</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA7psVKPE80JaPWVU7X57HLdGtsiHup_u8</string>
+	<string>AIzaSyCleoyoGG05G78lXUy_73n2f6QuWlKtc2M</string>
 	<key>GCM_SENDER_ID</key>
-	<string>789184658531</string>
+	<string>1030227550407</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.scriptsbundle.jobZone</string>
+	<string>com.madhatmedia.edn.ios</string>
 	<key>PROJECT_ID</key>
-	<string>nokri-demo-app</string>
+	<string>eye-docs-now-90a9e</string>
 	<key>STORAGE_BUCKET</key>
-	<string>nokri-demo-app.appspot.com</string>
+	<string>eye-docs-now-90a9e.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:789184658531:ios:9f24f8f71540430a884c56</string>
-	<key>DATABASE_URL</key>
-	<string>https://nokri-demo-app.firebaseio.com</string>
+	<string>1:1030227550407:ios:4c040cd3894e3a6b28dee2</string>
 </dict>
 </plist>

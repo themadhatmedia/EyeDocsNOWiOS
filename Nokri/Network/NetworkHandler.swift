@@ -214,7 +214,8 @@ class NetworkHandler {
             let encodedString = emailPass.data(using: String.Encoding.utf8)!
             let base64String = encodedString.base64EncodedString(options: [])
             print(base64String)
-          headers = [
+
+            headers = [
                 "Content-Type": "application/json",
                 "Authorization" : "Basic \(base64String)",
                 "Purchase-Code" : Constants.customCodes.purchaseCode,
