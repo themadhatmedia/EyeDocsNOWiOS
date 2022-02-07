@@ -3289,8 +3289,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D190617A2079EA8800CE1990 /* Build configuration list for PBXNativeTarget "Nokri" */;
 			buildPhases = (
-				CBA560CB0C0EDA7C52AAC43A /* Build Project Frameworks */,
 				3C027C020D8F3E4C62164D9D /* [CP] Check Pods Manifest.lock */,
+				CBA560CB0C0EDA7C52AAC43A /* Build Project Frameworks */,
 				D19061642079EA8800CE1990 /* Sources */,
 				D19061652079EA8800CE1990 /* Frameworks */,
 				D19061662079EA8800CE1990 /* Resources */,
@@ -3319,7 +3319,6 @@
 					D19061672079EA8800CE1990 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0930;
-						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4151,8 +4150,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Nokri/Nokri.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = GH4KMT5N3T;
 				ENABLE_BITCODE = NO;
@@ -4170,8 +4169,8 @@
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madhatmedia.edn.ios;
 				PRODUCT_NAME = Nokri;
-				PROVISIONING_PROFILE = "7604e104-275a-4a67-9b3c-0ff0fe6c2a05";
-				PROVISIONING_PROFILE_SPECIFIER = "Eye Docs Now testflight profile";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nokri/Nokri-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
@@ -4187,8 +4186,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Nokri/Nokri.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = GH4KMT5N3T;
 				ENABLE_BITCODE = NO;
@@ -4206,8 +4205,8 @@
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madhatmedia.edn.ios;
 				PRODUCT_NAME = Nokri;
-				PROVISIONING_PROFILE = "7604e104-275a-4a67-9b3c-0ff0fe6c2a05";
-				PROVISIONING_PROFILE_SPECIFIER = "Eye Docs Now testflight profile";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nokri/Nokri-Bridging-Header.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
