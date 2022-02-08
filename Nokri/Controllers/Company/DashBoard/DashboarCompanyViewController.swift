@@ -252,7 +252,7 @@ class DashboarCompanyViewController: UIViewController,UITableViewDataSource,UITa
     func nokri_populateData() {
         
         if isData == true{
-              dataArray.removeAll()
+            dataArray.removeAll()
         }
         for ab in dataArray{
 
@@ -685,7 +685,9 @@ class DashboarCompanyViewController: UIViewController,UITableViewDataSource,UITa
                 self.extraArr = successResponse.data.extra
                 self.dataArrImage = successResponse.data.dataImgArr
                 self.nokri_populateData()
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
             else {
                 self.tableView.isHidden = true

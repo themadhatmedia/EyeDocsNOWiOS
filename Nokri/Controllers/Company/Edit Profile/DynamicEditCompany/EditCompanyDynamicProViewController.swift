@@ -49,11 +49,22 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nokri_basicInfoData()
+
         self.tabBarController?.tabBar.barTintColor =  UIColor(hex: appColorNew!)
         
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+       
+
+        DispatchQueue.main.async {
+            self.nokri_basicInfoData()
+        }
+
+    }
+
     //MARK:- TableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,7 +90,7 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
             cell.delegate = self
             nameIs = cell.txtName.text!
             phoneIs = cell.txtPhone.text!
-            professionIs = cell.txtHeadline.text!
+            professionIs = cell.txtAddress.text!
             dobIs = cell.richEditor.text
             webIs = cell.txtWeb.text!
             setStaus = cell.btnSetPro.currentTitle!
@@ -93,7 +104,8 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
             print(nameIs)
             print(phoneIs)
             print(phoneIs)
-            
+
+
             return cell
         }
         else if indexPath.section == 1{
@@ -214,7 +226,7 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
 
         
         if indexPath.section == 0{
-            return 792
+            return 880
         }else if indexPath.section == 1{
 
             let objData = fieldsArray[indexPath.row]
@@ -307,8 +319,8 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
             "email" : emailIs,
             "emp_name": nameIs,
             "emp_phone": phoneIs,
-            "emp_headline": professionIs,
-          //  "emp_map_location": professionIs,
+           // "emp_headline": professionIs,
+            "emp_map_location": professionIs,
             "emp_intro": dobIs,
             "emp_web": webIs,
             "emp_prof_stat" : st,
@@ -366,7 +378,7 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
     
     @objc func nokri_showData(){
             self.nokri_basicInfoData()
-       }
+    }
     
     func nokri_basicInfoData() {
         self.showLoader()
@@ -377,12 +389,14 @@ class EditCompanyDynamicProViewController: UIViewController,UITableViewDelegate,
                 //self.imageViewBasicInfo.isHidden = false
                 self.tableView.dataSource = self
                 self.tableView.delegate = self
-                self.dataArray = successResponse.data
+                //self.dataArray = successResponse.data
                 self.dataArray =  successResponse.data
                 self.extraArray = successResponse.extras
                 self.fieldsArray = successResponse.customArr
-                self.nokri_populateData()
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.nokri_populateData()
+                    self.tableView.reloadData()
+                }
                 self.stopAnimating()
             }
             else {

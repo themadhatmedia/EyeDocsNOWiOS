@@ -26,7 +26,7 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
     @IBOutlet weak var lblCompanyName: UILabel!
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
-    @IBOutlet weak var txtHeadline: UITextField!
+    @IBOutlet weak var txtAddress: UITextView!
     @IBOutlet weak var txtPhone: UITextField!
     @IBOutlet weak var txtWeb: UITextField!
     @IBOutlet weak var txtImage: UITextField!
@@ -35,7 +35,7 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
     @IBOutlet weak var viewTop: UIView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
-    @IBOutlet weak var lblHeadline: UILabel!
+    @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblPhone: UILabel!
     @IBOutlet weak var lblWeb: UILabel!
     @IBOutlet weak var lblImage: UILabel!
@@ -55,6 +55,7 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
     //MARK:- Proporties
     
     var dataArray  = [CandidateEditData]()
+    var dataArray2 = [DashboardExtra]()
     var extraArray  = [CandidateEditExtra]()
     var imageUrl:URL?
     let dropDownSetProfile = DropDown()
@@ -84,15 +85,29 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
     
     override func awakeFromNib() {
         super.awakeFromNib()
-     
-        nokri_basicInfoData()
-        nokri_customeButton()
-        //nokri_textFieldAddBorder()
-        nokri_roundedImage()
-        self.txtHeadline.isHidden = true
-        self.lblHeadline.isHidden = true
-        self.headlineView.isHidden = false
-        self.healineView1.isHidden = true
+
+        let email = UserDefaults.standard.string(forKey: "email") ?? ""
+        let password = UserDefaults.standard.string(forKey: "password") ?? ""
+
+        let param: [String: Any] = [
+            "email": email,
+            "pass": password,
+        ]
+
+        DispatchQueue.main.async {
+            self.nokri_basicInfoData()
+            self.nokri_customeButton()
+            //nokri_textFieldAddBorder()
+            self.nokri_roundedImage()
+            self.nokri_loginData(parameter: param as NSDictionary)
+            //self.nokri_getProfileData()
+        }
+
+
+//        self.txtAddress.isHidden = true
+//        self.lblAddress.isHidden = true
+//        self.headlineView.isHidden = false
+//        self.healineView1.isHidden = true
 
     }
     
@@ -105,19 +120,19 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
     }
     
     @IBAction func txtfieldwebchanged(_ sender: UITextField) {
-        delegate?.companyStaticValues(emplName: txtName.text!, empPhone: txtPhone.text!, empHeadline: txtHeadline.text!, empIntro: richEditor.text, empWeb: txtWeb.text!, empStatus: "Public")
+        delegate?.companyStaticValues(emplName: txtName.text!, empPhone: txtPhone.text!, empHeadline: txtAddress.text!, empIntro: richEditor.text, empWeb: txtWeb.text!, empStatus: "Public")
     }
     
     @IBAction func txtfieldHeadlinechanged(_ sender: UITextField) {
-        delegate?.companyStaticValues(emplName: txtName.text!, empPhone: txtPhone.text!, empHeadline: txtHeadline.text!, empIntro: richEditor.text, empWeb: txtWeb.text!, empStatus: "Public")
+        delegate?.companyStaticValues(emplName: txtName.text!, empPhone: txtPhone.text!, empHeadline: txtAddress.text!, empIntro: richEditor.text, empWeb: txtWeb.text!, empStatus: "Public")
     }
     
     @IBAction func txtfieldPhoneChanged(_ sender: UITextField) {
-        delegate?.companyStaticValues(emplName: txtName.text!, empPhone: txtPhone.text!, empHeadline: txtHeadline.text!, empIntro: richEditor.text, empWeb: txtWeb.text!, empStatus: "Public")
+        delegate?.companyStaticValues(emplName: txtName.text!, empPhone: txtPhone.text!, empHeadline: txtAddress.text!, empIntro: richEditor.text, empWeb: txtWeb.text!, empStatus: "Public")
     }
     
     @IBAction func txtFieldChanged(_ sender: UITextField) {
-        delegate?.companyStaticValues(emplName: txtName.text!, empPhone: txtPhone.text!, empHeadline: txtHeadline.text!, empIntro: richEditor.text, empWeb: txtWeb.text!, empStatus: "Public")
+        delegate?.companyStaticValues(emplName: txtName.text!, empPhone: txtPhone.text!, empHeadline: txtAddress.text!, empIntro: richEditor.text, empWeb: txtWeb.text!, empStatus: "Public")
     }
     
     @IBAction func btnSetProClicked(_ sender: UIButton) {
@@ -263,7 +278,7 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
             //self.setProInt = setProArr[index]
             // self.txtSetProValue.text = item
             self.btnSetPro.setTitle(item, for: .normal)
-            self.delegate?.companyStaticValues(emplName: self.txtName.text!, empPhone: self.txtPhone.text!, empHeadline: self.txtHeadline.text!, empIntro: self.richEditor.text, empWeb: self.txtWeb.text!, empStatus: self.btnSetPro.currentTitle!)
+            self.delegate?.companyStaticValues(emplName: self.txtName.text!, empPhone: self.txtPhone.text!, empHeadline: self.txtAddress.text!, empIntro: self.richEditor.text, empWeb: self.txtWeb.text!, empStatus: self.btnSetPro.currentTitle!)
         }
         
         dropDownSetProfile.anchorView = btnSetPro
@@ -287,14 +302,14 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
     func nokri_textFieldAddBorder(){
         txtName.delegate = self
         txtEmail.delegate = self
-        txtHeadline.delegate = self
+      //  txtAddress.delegate = self
         txtWeb.delegate = self
         txtImage.delegate = self
         txtPhone.delegate = self
         //txtSetProfile.delegate = self
         txtName.nokri_addBottomBorder()
         txtEmail.nokri_addBottomBorder()
-        txtHeadline.nokri_addBottomBorder()
+     //   txtAddress.nokri_addBottomBorder()
         txtPhone.nokri_addBottomBorder()
         txtImage.nokri_addBottomBorder()
         txtWeb.nokri_addBottomBorder()
@@ -304,7 +319,7 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
     func nokri_textFieldUpdateBottomBorderSize(){
         txtName.nokri_updateBottomBorderSize()
         txtEmail.nokri_updateBottomBorderSize()
-        txtHeadline.nokri_updateBottomBorderSize()
+        //txtAddress.nokri_updateBottomBorderSize()
         txtPhone.nokri_updateBottomBorderSize()
         txtImage.nokri_updateBottomBorderSize()
         txtWeb.nokri_updateBottomBorderSize()
@@ -346,10 +361,10 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
                 txtEmail.placeholder = ab.key
                 txtEmail.text = ab.value
             }
-            if ab.fieldTypeName == "emp_headline" {
-                lblHeadline.text = ab.key
-                txtHeadline.placeholder = ab.key
-                txtHeadline.text = ab.value
+            if ab.fieldTypeName == "emp_map_location" {
+                lblAddress.text = ab.key
+                //txtAddress.placeholder = ab.key
+                txtAddress.text = ab.value
                 //lblCompanySubTitle.text = ab.value
             }
             if ab.fieldTypeName == "emp_web" {
@@ -371,7 +386,6 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
             if ab.fieldTypeName == "emp_prof_stat"{
                 lblSetProfile.text = ab.key
             }
-            
         }
         for ac in extraArray{
             if ac.fieldTypeName == "btn_name" {
@@ -384,11 +398,60 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
         
         }
         
-        delegate?.companyStaticValues(emplName: txtName.text!, empPhone: txtPhone.text!, empHeadline: txtHeadline.text!, empIntro: richEditor.text, empWeb: txtWeb.text!, empStatus: "Public")
+        delegate?.companyStaticValues(emplName: txtName.text!, empPhone: txtPhone.text!, empHeadline: txtAddress.text!, empIntro: richEditor.text, empWeb: txtWeb.text!, empStatus: "Public")
         
     }
    
     //MARK:- API Calls
+
+    func nokri_loginData(parameter: NSDictionary) {
+        UserHandler.nokri_loginUser(parameter: parameter as NSDictionary, success: { (successResponse) in
+            if successResponse.success == true {
+                UserHandler.sharedInstance.objLoginPost = successResponse.data
+                print("LoginData: \(String(describing: successResponse.data))")
+
+                self.txtName.text = successResponse.data.displayName
+                self.txtEmail.text = successResponse.data.userEmail
+                self.txtPhone.text = successResponse.data.phone
+            }
+        }) { (error) in
+            print("Error in getting login data: \(error)")
+        }
+    }
+
+    func nokri_getProfileData() {
+        UserHandler.nokri_dashboardCompany(success: { (successResponse) in
+            if successResponse.success {
+                //UserHandler.sharedInstance.objDashboard = successResponse.data
+                self.dataArray2 = successResponse.data.info
+
+                print("PROFILEDATA: \(successResponse.data.info)")
+
+                for ab in self.dataArray2 {
+                    if ab.fieldTypeName == "emp_name" {
+                        self.txtName.text = ab.value
+                    }
+                    if ab.fieldTypeName == "emp_phone" {
+                        self.txtPhone.text = ab.value
+                    }
+                    if ab.fieldTypeName == "emp_email" {
+                        self.txtEmail.text = ab.value
+                    }
+                    if ab.fieldTypeName == "emp_adress" {
+                        self.txtAddress.text = ab.value
+                    }
+                    if ab.fieldTypeName == "emp_web" {
+                        self.txtWeb.text = ab.value
+                    }
+                    if ab.fieldTypeName == "about_me" {
+                        self.richEditor.text = ab.value
+                    }
+                }
+            }
+        }) { (error) in
+            print("Error in getting profile data: \(error)")
+        }
+    }
     
     func nokri_basicInfoData() {
         //self.showLoader()
@@ -397,10 +460,11 @@ class EditCompanyDynamicStaticTableViewCell: UITableViewCell,UIImagePickerContro
             //self.stopAnimating()
             if successResponse.success{
                 self.imageViewBasicInfo.isHidden = false
-                self.dataArray =  successResponse.data
+                self.dataArray = successResponse.data
                 self.extraArray = successResponse.extras
                 self.nokri_populateData()
                 self.nokri_dropDownSetup()
+               
                 //self.stopAnimating()
             }
             else {
